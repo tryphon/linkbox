@@ -1,6 +1,6 @@
 import "defaults"
-import "defines/*"
-import "classes/*"
+import "defines/*.pp"
+import "classes/*.pp"
 
 $source_base="/tmp/puppet"
 
@@ -16,9 +16,19 @@ iface eth0 inet dhcp
 include network::base
 include network::dhcp::readonly
 include network::ifplugd
+include network::hostname
 
+include syslog
+include smtp
+include nano
+
+include apt::local
+include apt::tryphon
 include puppet
 
 include alsa::common
+include alsa::oss # troubles with alsa & darkice 
+
 include liquidsoap::readonly
 include darkice
+include linkstream
