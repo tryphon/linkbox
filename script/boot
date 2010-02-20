@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+# "-net nic,vlan=0 -net tap,ifname=tap0,script=config/qemu-ifup,downscript=config/qemu-ifdown"
+
+qemu_command = "qemu -enable-kvm -m 128m -drive file=dist/disk,if=ide,index=0,media=disk -soundhw es1370"
+
+puts "Run #{qemu_command}"
+system qemu_command
