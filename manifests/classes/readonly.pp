@@ -17,23 +17,13 @@ class readonly::common {
   }
 
   readonly::mount_tmpfs { "/var/etc": }
+  readonly::mount_tmpfs { "/var/lib/urandom": }
 
   file { "/var/log.model":
     ensure => directory
   }
   file { "/var/log.model/dmesg":
     ensure => present
-  }
-
-  file { "/etc/init.d/varlog":
-    source => "$source_base/files/readonly/varlog.initd",
-    mode => 775
-  }
-  # a standard service[varlog] installs rc links at step 20
-  exec { "update-rc.d-varlog":
-    command => "update-rc.d varlog defaults 15",
-    subscribe => File["/etc/init.d/varlog"],
-    refreshonly => true
   }
 
   # mount { ... } tries to (u)mount root fs ...
