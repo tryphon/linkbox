@@ -8,5 +8,7 @@
 RUN=yes
 # Additional options that are passed to the Daemon.
 DAEMON_OPTS="-c /etc/darkice/darkice.cfg"
-USER=nobody
-GROUP=nogroup
+USER=link
+GROUP=audio
+
+DAEMON=/usr/local/bin/darkice-safe
