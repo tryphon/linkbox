@@ -37,3 +37,16 @@ class network::dhcp::readonly {
 class network::ifplugd {
   package { ifplugd: }
 }
+
+class network::hostname {
+  file { "/etc/hostname": 
+    content => "linkbox"
+  }
+  host { linkbox: ip => "127.0.1.1" }
+}
+
+class network::interfaces {
+  file { "/etc/network/interfaces":
+    ensure => "/var/etc/network/interfaces"
+  }
+}
