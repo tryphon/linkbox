@@ -9,6 +9,9 @@ class liquidsoap {
   file { "/var/lib/liquidsoap/stream.liq":
     source => "$source_base/files/liquidsoap/stream.liq"
   }
+  file { "/etc/liquidsoap":
+    ensure => directory
+  }
   file { "/etc/liquidsoap/stream.liq":
     ensure => "/var/lib/liquidsoap/stream.liq"
   }

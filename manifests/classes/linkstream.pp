@@ -16,6 +16,10 @@ class linkstream {
     ensure => "/usr/lib/libogg.so.0"
   }
 
+  file { "/etc/linkstream":
+    ensure => directory
+  }
+
   file { "/etc/linkstream/linkstream.conf":
     ensure => "/var/etc/linkstream/linkstream.conf"
   }
