@@ -7,8 +7,30 @@ class puppet {
     mode => 755
   }
 
-  file { "/etc/puppet/site.pp":
-    source => "$source_base/files/puppet/site.pp"
+  readonly::mount_tmpfs { "/var/lib/puppet": }
+
+  file { "/etc/init.d/puppet-boot":
+    source => "$source_base/files/puppet/puppet-boot.init",
+    mode => 755,
+    require => File["/usr/local/sbin/launch-puppet"]
+  }
+  file { "/etc/puppet/manifests":
+    ensure => directory,
+    recurse => true,
+    source => "$source_base/files/puppet/manifests"
+  }
+
+  file { "/boot/config.pp":
+    source => "$source_base/files/puppet/config.pp"
+  }
+  file { "/etc/puppet/manifests/config.pp":
+    ensure => "/var/etc/puppet/manifests/config.pp"
+  }
+
+  file { "/etc/puppet/templates":
+    ensure => directory,
+    recurse => true,
+    source => "$source_base/files/puppet/templates"
   }
 
   file { "/usr/local/sbin/launch-puppet":
@@ -16,8 +38,10 @@ class puppet {
     mode => 755
   }
 
-  file { "/etc/cron.d/puppet":
-    source => "$source_base/files/puppet/puppet.cron.d",
-    require => Package[cron]
+  exec { "update-rc.d-puppet-boot":
+    command => "update-rc.d puppet-boot start 38 S . stop 40 0 6 .",
+    require => File["/etc/init.d/puppet-boot"],
+    # creates => "/etc/rc5.d/S21puppet"
   }
+  
 }
