@@ -86,15 +86,15 @@ running() {
 
     # No pidfile, probably no daemon present
     [ ! -f "$PIDFILE" ] && return 1
-    pid=`cat $PIDFILE`
-    running_pid $pid $DAEMON || return 1
+#    pid=`cat $PIDFILE`
+#    running_pid $pid $DAEMON || return 1
     return 0
 }
 
 start_server() {
 # Start the process using the wrapper
         start-stop-daemon --start --quiet --pidfile $PIDFILE \
-            --background --chuid $USER:$GROUP --exec $DAEMON -- $DAEMON_OPTS
+            --background --chuid $USER:$GROUP --make-pidfile --exec $DAEMON -- $DAEMON_OPTS
         errcode=$?
 	return $errcode
 }
