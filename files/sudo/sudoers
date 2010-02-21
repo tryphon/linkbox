@@ -1,0 +1,4 @@
+Defaults	env_reset
+
+root	ALL=(ALL) ALL
+www-data	ALL=(root) NOPASSWD: /usr/local/sbin/launch-puppet
