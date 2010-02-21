@@ -8,6 +8,7 @@ if [ "$1" == "boot" ]; then
         mkdir -p "/var/etc/puppet/manifests"
         echo "Restore stored configuration"
         cp "/boot/config.pp" "/var/etc/puppet/manifests/config.pp"
+        chown www-data "/var/etc/puppet/manifests/config.pp"
     fi
 fi
 
