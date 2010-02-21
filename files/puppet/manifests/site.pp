@@ -36,6 +36,19 @@ file { "/var/etc/linkstream/linkstream.conf":
   tag => boot
 }
 
+file { "/var/lib/linkcontrol/db":
+  ensure => directory,
+  owner => www-data,
+  tag => boot
+}
+
+exec { "create-linkcontrol-db": 
+  command => "cp /usr/share/linkcontrol/db/production.sqlite3 /var/lib/linkcontrol/db && chown www-data /var/lib/linkcontrol/db/production.sqlite3",
+  creates => "/var/lib/linkcontrol/db/production.sqlite3",
+  require => File["/var/lib/linkcontrol/db"],
+  tag => boot
+}
+
 service { linkstream: }
 
 file { "/var/etc/resolv.conf":

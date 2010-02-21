@@ -25,6 +25,7 @@ include nano
 include apt::local
 include apt::tryphon
 include puppet
+include sudo
 
 include alsa::common
 include alsa::oss # troubles with alsa & darkice 
@@ -32,3 +33,5 @@ include alsa::oss # troubles with alsa & darkice
 include liquidsoap::readonly
 include darkice
 include linkstream
+include apache
+include linkcontrol
