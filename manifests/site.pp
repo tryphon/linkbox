@@ -18,6 +18,7 @@ include network::dhcp::readonly
 include network::ifplugd
 include network::hostname
 
+include kernel
 include syslog
 include smtp
 include nano
