@@ -19,11 +19,18 @@ file { "/var/etc/network":
 
 file { "/var/etc/network/interfaces":
   content => template("/etc/puppet/templates/interfaces"),
-  notify => Service[networking],
+  notify => Exec["restart-networking"],
   tag => boot
 }
 
-service { networking: }
+file { "/etc/network/interfaces":
+  ensure => "/var/etc/network/interfaces"
+}
+
+exec { "restart-networking": 
+  command => "/sbin/ifdown eth0 && /sbin/ifup eth0",
+  refreshonly => true
+}
 
 file { "/var/etc/linkstream":
   ensure => directory,

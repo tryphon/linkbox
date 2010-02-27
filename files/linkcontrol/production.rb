@@ -26,4 +26,7 @@ config.action_controller.perform_caching             = true
 config.after_initialize do
   Network.configuration_file = "/var/etc/puppet/manifests/config.pp"
   Network.system_update_command = "sudo /usr/local/sbin/launch-puppet"
+  
+  # SavePoint.timestamp_file = "/boot/config.pp"
+  SavePoint.save_command = "sudo /usr/local/sbin/save-puppet-config"
 end

@@ -1,5 +1,11 @@
 class puppet {
   include cron
+  include apt::backport
+
+  package { puppet: 
+    ensure => latest,
+    require => Apt::Source[lenny-backport]
+  }
 
   # Fix support of START=no
   file { "/etc/init.d/puppet":
@@ -35,6 +41,10 @@ class puppet {
 
   file { "/usr/local/sbin/launch-puppet":
     source => "$source_base/files/puppet/launch-puppet",
+    mode => 755
+  }
+  file { "/usr/local/sbin/save-puppet-config":
+    source => "$source_base/files/puppet/save-puppet-config",
     mode => 755
   }
 
