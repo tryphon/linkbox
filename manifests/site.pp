@@ -10,7 +10,7 @@ include network::ifplugd
 include network::hostname
 include network::interfaces
 
-include kernel
+include linux::kernel-2-6-30
 include syslog
 include smtp
 include nano
