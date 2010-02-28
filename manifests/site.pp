@@ -16,7 +16,7 @@ include smtp
 include nano
 include ssh
 
-include apt::local
+include apt
 include apt::tryphon
 include puppet
 include sudo

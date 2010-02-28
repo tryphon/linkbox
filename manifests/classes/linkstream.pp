@@ -2,6 +2,9 @@ class linkstream {
   include apt::tryphon
 
   package { linkstream: require => Apt::Source[tryphon] }
+  apt::source::pin { [libeventmachine-ruby, "libeventmachine-ruby1.8"]:
+    source => "lenny-backports"
+  }
 
   user { link:
     groups => [audio]

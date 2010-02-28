@@ -4,7 +4,10 @@ class puppet {
 
   package { puppet: 
     ensure => latest,
-    require => Apt::Source[lenny-backport]
+    require => Apt::Source[lenny-backports]
+  }
+  apt::source::pin { "puppet":
+    source => "lenny-backports"
   }
 
   # Fix support of START=no
