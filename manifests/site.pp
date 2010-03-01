@@ -4,10 +4,9 @@ import "classes/*.pp"
 
 $source_base="/tmp/puppet"
 
-include network::base
-include network::dhcp::readonly
-include network::ifplugd
-include network::hostname
+$box_name="linkbox"
+
+include network
 include network::interfaces
 
 include linux::kernel-2-6-30
