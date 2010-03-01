@@ -54,7 +54,7 @@ class puppet {
   exec { "update-rc.d-puppet-boot":
     command => "update-rc.d puppet-boot start 38 S . stop 40 0 6 .",
     require => File["/etc/init.d/puppet-boot"],
-    # creates => "/etc/rc5.d/S21puppet"
+    creates => "/etc/rcS.d/S38puppet-boot"
   }
   
 }
