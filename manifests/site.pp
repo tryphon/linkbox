@@ -16,6 +16,9 @@ include smtp
 include nano
 include ssh
 
+include dbus::readonly
+include avahi
+
 include apt
 include apt::tryphon
 include puppet
