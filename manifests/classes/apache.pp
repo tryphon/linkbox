@@ -29,3 +29,8 @@ class apache::passenger {
     require => Apt::Source[lenny-backports]
   }
 }
+
+class apache::dnssd {
+  package { libapache2-mod-dnssd: }
+  apache::module { mod-dnssd: config => true }
+}

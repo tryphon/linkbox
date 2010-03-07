@@ -31,4 +31,5 @@ include liquidsoap::readonly
 include darkice
 include linkstream
 include apache
+include apache::dnssd
 include linkcontrol
