@@ -6,7 +6,7 @@ require 'system_builder/task'
 load './local.rb' if File.exists?("./local.rb")
 
 SystemBuilder::Task.new(:linkbox) do
-  SystemBuilder::DiskImage.new("dist/disk").tap do |image|
+  SystemBuilder::DiskSquashfsImage.new("dist/disk").tap do |image|
     image.boot = SystemBuilder::DebianBoot.new("build/root")
     image.boot.configurators << SystemBuilder::PuppetConfigurator.new
   end

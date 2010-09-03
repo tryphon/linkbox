@@ -5,10 +5,10 @@
 #
 # This is a POSIX shell fragment
 #
-RUN=yes
+RUN=no
 # Additional options that are passed to the Daemon.
-DAEMON_OPTS="-c /etc/darkice/darkice.cfg"
-USER=link
+DAEMON_OPTS="-c /etc/darkice/darkice.cfg --pidfile $PIDFILE"
+USER=root
 GROUP=audio
 
-DAEMON=/usr/local/bin/darkice-safe
+DAEMON=/usr/bin/darkice-safe

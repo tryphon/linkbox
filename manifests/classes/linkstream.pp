@@ -12,7 +12,7 @@ class linkstream {
 
   file { "/etc/default/linkstream":
     source => "$source_base/files/linkstream/linkstream.default",
-    require => Package[linkstream]
+    require => [Package[linkstream], User[link]]
   }
 
   file { "/usr/lib/libogg.so":
@@ -25,6 +25,12 @@ class linkstream {
 
   file { "/etc/linkstream/linkstream.conf":
     ensure => "/var/etc/linkstream/linkstream.conf"
+  }
+
+  package { libcelt0-0: require => Apt::Source::Pin[libcelt0-0] }
+
+  apt::source::pin { libcelt0-0:
+    source => "lenny-backports"
   }
 
 }

@@ -24,6 +24,7 @@ include apt::tryphon
 include puppet
 include sudo
 
+$amixerconf_mode=duplex
 include alsa::common
 include alsa::oss # troubles with alsa & darkice 
 

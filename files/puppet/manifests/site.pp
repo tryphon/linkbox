@@ -58,6 +58,24 @@ exec { "create-linkcontrol-db":
 
 service { linkstream: }
 
+service { darkice:
+  ensure => $linkstream_http_port ? {
+    '' => stopped,
+    default => running
+  }
+}
+
+service { liquidsoap:
+  ensure => $linkstream_http_port ? {
+    '' => stopped,
+    default => running
+  }
+}
+
+exec { "amixerconf":
+  command => "/usr/local/bin/amixerconf duplex"
+}
+
 file { "/var/etc/resolv.conf":
   ensure => present,
   tag => boot

@@ -5,7 +5,7 @@
 #
 
 # Don't use root !
-DAEMON_USER=nobody
+DAEMON_USER=link
 
 # Edit the default configuration :
 CONFIG_FILE=/etc/linkstream/linkstream.conf
