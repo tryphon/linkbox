@@ -56,7 +56,9 @@ exec { "create-linkcontrol-db":
   tag => boot
 }
 
-service { linkstream: }
+service { linkstream: 
+  ensure => running
+}
 
 service { darkice:
   ensure => $linkstream_http_port ? {
@@ -65,11 +67,26 @@ service { darkice:
   }
 }
 
+file { "/var/etc/default":
+  ensure => directory,
+  tag => boot
+}
+
+file { "/var/etc/default/darkice":
+  content => template("/etc/puppet/templates/darkice.default"),
+  tag => boot
+}
+
 service { liquidsoap:
   ensure => $linkstream_http_port ? {
     '' => stopped,
     default => running
   }
+}
+
+file { "/var/etc/default/liquidsoap":
+  content => template("/etc/puppet/templates/liquidsoap.default"),
+  tag => boot
 }
 
 exec { "amixerconf":
@@ -81,9 +98,8 @@ file { "/var/etc/resolv.conf":
   tag => boot
 }
 
-file { "/var/log":
-  ensure => directory,
-  recurse => true,
-  source => "/var/log.model",
+exec { "copy-var-model":
+  creates => "/var/log/dmesg",
+  command => "cp -a /var/log.model/* /var/log/",
   tag => boot
 }

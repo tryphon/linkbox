@@ -17,9 +17,24 @@ end
 
 tap_device = TapDevice.new("tap0").create
 
-network_options="-net nic,vlan=0 -net tap,ifname=#{tap_device},script=config/qemu-ifup,downscript=config/qemu-ifdown"
+network_mode="nat"
 
-qemu_command = "qemu -enable-kvm -m 128m -drive file=dist/disk,if=ide,index=0,media=disk -soundhw es1370 #{network_options}"
+tap_options = []
+tap_options << "ifname=#{tap_device}"
+tap_options << "script=config/qemu-ifup-#{network_mode}" if File.exists? "config/qemu-ifup-#{network_mode}"
+tap_options << "downscript=config/qemu-ifdown" if File.exists? "config/qemu-ifdown-#{network_mode}"
+
+network_options="-net nic,vlan=0 -net tap,#{tap_options.join(',')}"
+
+ENV['QEMU_AUDIO_DRV']='alsa'
+
+unless ARGV.first == "iso"
+  disk_option="-drive file=dist/disk,if=ide,index=0,media=disk"
+else
+  disk_option="-cdrom dist/iso"
+end
+
+qemu_command = "qemu -enable-kvm -m 512m #{disk_option} -soundhw ac97 #{network_options}"
 
 puts "Run #{qemu_command}"
 system qemu_command

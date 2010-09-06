@@ -19,6 +19,15 @@ confdir=/etc/liquidsoap
 liquidsoap=${exec_prefix}/bin/liquidsoap
 rundir=/var/run/liquidsoap
 
+NAME=liquidsoap
+
+START=yes
+
+# Include defaults if available
+if [ -f /etc/default/$NAME ] ; then
+	. /etc/default/$NAME
+fi
+
 # Test if $rundir exists
 if [ ! -d $rundir ]; then
   mkdir -p $rundir;
@@ -39,6 +48,9 @@ case "$1" in
     ;;
 
   start)
+    if [ "x$START" != "xyes" ] ; then
+      exit 0
+    fi
     echo -n "Starting channels:"
     cd $confdir
     for liq in *.liq ; do

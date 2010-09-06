@@ -60,12 +60,6 @@ if [ -f /etc/default/$NAME ] ; then
 	. /etc/default/$NAME
 fi
 
-# Use this if you want the user to explicitly set 'RUN' in 
-# /etc/default/
-if [ "x$RUN" != "xyes" ] ; then
-    exit 0
-fi
-
 set -e
 
 running_pid() {
@@ -97,6 +91,12 @@ running() {
 }
 
 start_server() {
+  # Use this if you want the user to explicitly set 'RUN' in 
+  # /etc/default/
+  if [ "x$RUN" != "xyes" ] ; then
+    return 1
+  fi
+
 # Start the process using the wrapper
         start-stop-daemon --start --quiet --pidfile $PIDFILE \
             --background --chuid $USER:$GROUP --exec $DAEMON -- $DAEMON_OPTS

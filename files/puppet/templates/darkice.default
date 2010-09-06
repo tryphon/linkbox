@@ -1,0 +1,6 @@
+RUN=<%= (has_variable?('linkstream_http_port') and not linkstream_http_port.empty?) ? "yes" : "no" %>
+DAEMON_OPTS="-c /etc/darkice/darkice.cfg -p /var/run/darkice.pid"
+USER=root
+GROUP=audio
+
+DAEMON=/usr/local/bin/darkice-safe

@@ -37,4 +37,8 @@ class liquidsoap::readonly {
     source => "$source_base/files/liquidsoap/liquidsoap.initd",
     require => Package[liquidsoap]
   }
+
+  file { "/etc/default/liquidsoap":
+    ensure => "/var/etc/default/liquidsoap"
+  }
 }

@@ -1,0 +1,1 @@
+START=<%= (has_variable?('linkstream_http_port') and not linkstream_http_port.empty?) ? "yes" : "no" %>

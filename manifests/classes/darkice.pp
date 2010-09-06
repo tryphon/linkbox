@@ -20,8 +20,7 @@ class darkice {
   }
 
   file { "/etc/default/darkice":
-    source => "$source_base/files/darkice/darkice.default",
-    require => [File["/usr/local/bin/darkice-safe"], User[link]]
+    ensure => "/var/etc/default/darkice"
   }
 
   file { "/usr/local/bin/darkice-safe":
