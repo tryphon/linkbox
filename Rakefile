@@ -3,7 +3,9 @@ require 'rubygems'
 require 'system_builder'
 require 'system_builder/task'
 
-load './local.rb' if File.exists?("./local.rb")
+["#{ENV['HOME']}/.system_builder.rc", "./local.rb"].each do |conf|
+  load conf if File.exists?(conf)
+end
 
 SystemBuilder::Task.new(:linkbox) do
   SystemBuilder::DiskSquashfsImage.new("dist/disk").tap do |image|
