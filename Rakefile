@@ -28,8 +28,7 @@ end
 
 task :clean do
   sh "sudo sh -c \"fuser $PWD/build/root || rm -r build/root\"" if File.exists?("build/root")
-  rm_f "dist"
-  mkdir_p "dist"
+  sh "rm -f dist/*"
 end
 
 namespace :buildbot do
