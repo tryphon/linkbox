@@ -1,4 +1,7 @@
 task :clean do
-  sh "sudo sh -c \"fuser $PWD/build/root || rm -r build/root\"" if File.exists?("build/root")
+  unless File.exists?("build/root") and system "sudo fuser $PWD/build/root"
+    sh "sudo rm -rf build/root"
+  end
+  sh "rm -f build/*"
   sh "rm -f dist/*"
 end

@@ -5,4 +5,7 @@ namespace :buildbot do
   end
 end
 
-task :buildbot => [:clean, "linkbox:dist", "buildbot:dist", :clean]
+task :buildbot => [:clean, "linkbox:dist", "buildbot:dist"] do
+  # clean in dependencies is executed only once
+  Rake::Task["clean"].invoke
+end
