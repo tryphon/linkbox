@@ -3,7 +3,8 @@ class linkstream {
 
   package { linkstream: require => Apt::Source[tryphon] }
   apt::source::pin { [libeventmachine-ruby, "libeventmachine-ruby1.8"]:
-    source => "lenny-backports"
+    source => "tryphon",
+    release => "lenny-backports"
   }
 
   user { link:
@@ -30,7 +31,8 @@ class linkstream {
   package { libcelt0-0: require => Apt::Source::Pin[libcelt0-0] }
 
   apt::source::pin { libcelt0-0:
-    source => "lenny-backports"
+    source => "tryphon",
+    release => "lenny-backports"
   }
 
 }
