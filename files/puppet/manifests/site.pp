@@ -10,6 +10,21 @@ File {
 
 import "config.pp"
 
+$enable_http=$linkstream_http_port ? {
+  '' => false,
+  default => true
+}
+$enable_alsa=!$enable_http
+
+$enable_capture=$linkstream_alsa_capture ? {
+  "true" => true,
+  default => false
+}
+$enable_playback=$linkstream_alsa_playback ? {
+  "true" => true,
+  default => false
+}
+
 # Use tag boot for resources required at boot (network files, etc ..)
 
 file { "/var/etc/network":
@@ -57,14 +72,13 @@ exec { "create-linkcontrol-db":
 }
 
 service { linkstream: 
-  ensure => running
+  ensure => running,
+  require => [Service[darkice], Service[liquidsoap]]
 }
 
+$enable_darkice=$enable_http and $enable_capture
 service { darkice:
-  ensure => $linkstream_http_port ? {
-    '' => stopped,
-    default => running
-  }
+  ensure => $enable_darkice
 }
 
 file { "/var/etc/default":
@@ -77,11 +91,9 @@ file { "/var/etc/default/darkice":
   tag => boot
 }
 
+$enable_liquidsoap=$enable_http and $enable_playback
 service { liquidsoap:
-  ensure => $linkstream_http_port ? {
-    '' => stopped,
-    default => running
-  }
+  ensure => $enable_liquidsoap
 }
 
 file { "/var/etc/default/liquidsoap":
