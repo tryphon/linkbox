@@ -10,8 +10,8 @@ $linkstream_target_port="14100"
 $linkstream_udp_port="14100"
 $linkstream_http_port="8000"
 
-$linkstream_alsa_capture="false"
-$linkstream_alsa_playback="false"
+$linkstream_alsa_capture="true"
+$linkstream_alsa_playback="true"
 
 $linkstream_packetizer_interleaving=""
 $linkstream_packetizer_packet_size=""
