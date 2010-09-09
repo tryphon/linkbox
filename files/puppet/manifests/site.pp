@@ -73,7 +73,7 @@ exec { "create-linkcontrol-db":
 
 service { linkstream: 
   ensure => running,
-  require => [Service[darkice], Service[liquidsoap]]
+  require => [Service[darkice], Service[ogg-123-daemon]]
 }
 
 $enable_darkice=$enable_http and $enable_capture
@@ -91,13 +91,13 @@ file { "/var/etc/default/darkice":
   tag => boot
 }
 
-$enable_liquidsoap=$enable_http and $enable_playback
-service { liquidsoap:
-  ensure => $enable_liquidsoap
+$enable_ogg123=$enable_http and $enable_playback
+service { ogg-123-daemon:
+  ensure => $enable_ogg123
 }
 
-file { "/var/etc/default/liquidsoap":
-  content => template("/etc/puppet/templates/liquidsoap.default"),
+file { "/var/etc/default/ogg-123-daemon":
+  content => template("/etc/puppet/templates/ogg-123-daemon.default"),
   tag => boot
 }
 

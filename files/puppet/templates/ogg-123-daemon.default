@@ -1,0 +1,4 @@
+RUN=<%= enable_ogg123 ? "yes" : "no" %>
+DAEMON_OPTS="-b 256 --device-option dev:plughw:0 http://localhost:<%= linkstream_http_port %>/test.ogg"
+USER=link
+GROUP=audio

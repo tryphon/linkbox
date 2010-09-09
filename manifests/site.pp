@@ -28,7 +28,6 @@ $amixerconf_mode=duplex
 include alsa::common
 include alsa::oss # troubles with alsa & darkice 
 
-include liquidsoap::readonly
 include darkice
 include linkstream
 include apache
@@ -36,3 +35,4 @@ include apache::dnssd
 include linkcontrol
 
 include vorbis-tools
+include ogg123-daemon
