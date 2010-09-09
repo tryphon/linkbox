@@ -34,3 +34,5 @@ include linkstream
 include apache
 include apache::dnssd
 include linkcontrol
+
+include vorbis-tools
