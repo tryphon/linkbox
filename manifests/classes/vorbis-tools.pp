@@ -3,6 +3,7 @@ class vorbis-tools {
 }
 
 class ogg123-daemon {
+  include vorbis-tools
 
   file { "/etc/init.d/ogg-123-daemon":
     source => "$source_base/files/vorbis-tools/ogg-123-daemon.init",
