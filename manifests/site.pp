@@ -1,38 +1,18 @@
 import "defaults"
 import "classes/*.pp"
+import "config"
 
 import "box"
 
 $source_base="/tmp/puppet"
 
 $box_name="linkbox"
+include box
 
-include network
-include network::interfaces
+$amixerconf_mode="duplex"
+include box::audio
 
-include linux::kernel-2-6-30
-include syslog
-include smtp
-include nano
-include ssh
-
-include dbus::readonly
-include avahi
-
-include apt
-include apt::tryphon
-include puppet
-include sudo
-
-$amixerconf_mode=duplex
-include alsa::common
-include alsa::oss # troubles with alsa & darkice 
-
+include linkcontrol
 include darkice
 include linkstream
-include apache
-include apache::dnssd
-include linkcontrol
-
-include vorbis-tools
 include ogg123-daemon
