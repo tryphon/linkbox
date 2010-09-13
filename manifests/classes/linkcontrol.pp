@@ -1,4 +1,6 @@
 class linkcontrol {
+  include apache
+  include apache::dnssd
   include apache::passenger
 
   file { "/etc/linkcontrol/database.yml":
