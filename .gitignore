@@ -2,3 +2,5 @@ dist
 build
 *~
 local.rb
+puppet.log
+.bundle/*
