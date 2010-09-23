@@ -16,7 +16,9 @@ $linkstream_alsa_playback="true"
 $linkstream_packetizer_interleaving=""
 $linkstream_packetizer_packet_size=""
 $linkstream_packetizer_repeat=""
+$linkstream_packetizer_token=""
 $linkstream_unpacketizer_time_to_live=""
+$linkstream_unpacketizer_token=""
 
 
 
