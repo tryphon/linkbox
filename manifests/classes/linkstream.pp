@@ -1,7 +1,7 @@
 class linkstream {
   include apt::tryphon
 
-  package { linkstream: require => Apt::Source[tryphon], ensure => "0.4-1lenny1" }
+  package { linkstream: require => Apt::Source[tryphon], ensure => "0.5-1lenny1" }
   apt::source::pin { [libeventmachine-ruby, "libeventmachine-ruby1.8"]:
     source => "tryphon",
     release => "lenny-backports"
