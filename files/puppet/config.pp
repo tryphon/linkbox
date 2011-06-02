@@ -4,21 +4,15 @@ $network_static_netmask="255.255.255.0"
 $network_static_gateway="192.168.1.1"
 $network_static_dns1="192.168.1.1"
 
-$linkstream_target_host="localhost"
-$linkstream_target_port="14100"
+# $link_incoming_host="linkbox-1.local"
+# $link_incoming_port=8000
+# $link_incoming_password="secret"
 
-$linkstream_udp_port="14100"
-$linkstream_http_port="8000"
+# $link_outgoing_host="linkbox-1.local"
+# $link_outgoing_port=8000
+# $link_outgoing_password="secret"
 
-$linkstream_alsa_capture="true"
-$linkstream_alsa_playback="true"
-
-$linkstream_packetizer_interleaving=""
-$linkstream_packetizer_packet_size=""
-$linkstream_packetizer_repeat=""
-$linkstream_packetizer_token=""
-$linkstream_unpacketizer_time_to_live=""
-$linkstream_unpacketizer_token=""
+$link_outgoing_quality=5
 
 
 
