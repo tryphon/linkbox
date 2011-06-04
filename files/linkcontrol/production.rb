@@ -29,4 +29,8 @@ config.after_initialize do
   
   # SavePoint.timestamp_file = "/boot/config.pp"
   SavePoint.save_command = "sudo /usr/local/sbin/save-puppet-config"
+
+  Release.latest_url = "http://download.tryphon.eu/linkbox/latest.yml"
+  Release.current_url = "/boot/current.yml"
+  Release.install_command = "sudo /usr/local/sbin/box-upgrade"
 end
