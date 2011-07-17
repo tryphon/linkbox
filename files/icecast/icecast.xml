@@ -1,0 +1,99 @@
+<icecast>
+    <limits>
+        <clients><%= icecast_clients %></clients>
+        <sources>2</sources>
+        <threadpool>5</threadpool>
+        <queue-size>524288</queue-size>
+        <client-timeout>30</client-timeout>
+        <header-timeout>15</header-timeout>
+        <source-timeout>10</source-timeout>
+        <!--
+        <burst-on-connect>1</burst-on-connect>
+        <burst-size>65535</burst-size>
+        -->
+    </limits>
+
+    <authentication>
+        <!-- Sources log in with username 'source' -->
+        <source-password><%= icecast_source_password %></source-password>
+        <!-- Relays log in username 'relay' -->
+        <relay-password><%= icecast_relay_password %></relay-password>
+
+        <!-- Admin logs in with the username given below -->
+        <admin-user>admin</admin-user>
+        <admin-password><%= icecast_admin_password %></admin-password>
+    </authentication>
+
+    <hostname>localhost</hostname>
+
+    <listen-socket>
+        <port>8000</port>
+    </listen-socket>
+
+    <mount>
+        <mount-name>/link-outgoing.ogg</mount-name>
+        <% if has_variable?("link_outgoing_password") and not link_outgoing_password.empty? %>
+        <authentication type="htpasswd">
+          <option name="filename" value="/etc/icecast2/link-outgoing-htpasswd"/>
+        </authentication>
+        <% end %>
+        <!-- <on-connect>/home/icecast/bin/stream-start</on-connect> -->
+        <!-- <on-disconnect>/home/icecast/bin/stream-stop</on-disconnect> -->
+    </mount>
+
+    <mount>
+        <mount-name>/link-incoming.ogg</mount-name>
+
+        <!-- In fact, link_incoming_password is mandatory, --> 
+        <!-- because nobody has the icecast source password -->
+        <% if has_variable?("link_incoming_password") and not link_incoming_password.empty? %>
+        <password><%= link_incoming_password %></password>
+
+        <authentication type="htpasswd">
+          <option name="filename" value="/etc/icecast2/link-incoming-htpasswd"/>
+        </authentication>
+        <% end %>
+        <!-- <on-connect>/home/icecast/bin/stream-start</on-connect> -->
+        <!-- <on-disconnect>/home/icecast/bin/stream-stop</on-disconnect> -->
+    </mount>
+
+    <paths>
+		    <!-- basedir is only used if chroot is enabled -->
+        <basedir>/usr/share/icecast2</basedir>
+
+        <!-- Note that if <chroot> is turned on below, these paths must both
+             be relative to the new root, not the original root -->
+        <logdir>/var/log/icecast2</logdir>
+        <webroot>/usr/share/icecast2/web</webroot>
+        <adminroot>/usr/share/icecast2/admin</adminroot>
+        <!-- <pidfile>/usr/share/icecast2/icecast.pid</pidfile> -->
+
+        <alias source="/" dest="/status.xsl"/>
+    </paths>
+
+    <logging>
+        <accesslog>access.log</accesslog>
+        <errorlog>error.log</errorlog>
+        <!-- <playlistlog>playlist.log</playlistlog> -->
+      	<loglevel>3</loglevel> <!-- 4 Debug, 3 Info, 2 Warn, 1 Error -->
+
+      	<logsize>10240</logsize> 
+
+        <!-- If logarchive is enabled (1), then when logsize is reached
+             the logfile will be moved to [error|access|playlist].log.DATESTAMP,
+             otherwise it will be moved to [error|access|playlist].log.old.
+             Default is non-archive mode (i.e. overwrite)
+        -->
+        <!-- <logarchive>1</logarchive> -->
+    </logging>
+
+    <security>
+        <chroot>0</chroot>
+        <!--
+        <changeowner>
+            <user>nobody</user>
+            <group>nogroup</group>
+        </changeowner>
+        -->
+    </security>
+</icecast>

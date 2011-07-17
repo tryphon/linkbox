@@ -19,4 +19,6 @@ class liquidsoap::linkbox {
     require => Package[liquidsoap]
   }
 
+  # Manage syslog forward
+  liquidsoap::log { link: }
 }
