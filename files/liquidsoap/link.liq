@@ -1,4 +1,4 @@
-local_incoming_stream = input.http("http://localhost:8000/link-incoming.ogg")
+local_incoming_stream = input.http("http://<% if has_variable?("link_incoming_password") and not link_incoming_password.empty? %>linkbox:<%= link_incoming_password %>@<% end %>localhost:8000/link-incoming.ogg")
 
 <% if has_variable?("link_incoming_mode") and link_incoming_mode == "pull" and has_variable?("link_incoming_host") and has_variable?("link_incoming_port") %>
 remote_incoming_stream = input.http("http://<% if has_variable?("link_incoming_password") and not link_incoming_password.empty? %>linkbox:<%= link_incoming_password %>@<% end %><%= link_incoming_host %>:<%= link_incoming_port %>/link-outgoing.ogg")
