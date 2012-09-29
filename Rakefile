@@ -9,4 +9,5 @@ SystemBuilder::BoxTasks.new(:linkbox) do |box|
   end
 end
 
-task :buildbot => "linkbox:buildbot"
+desc "Run continuous integration tasks (spec, ...)"
+task :ci => "linkbox:buildbot"
