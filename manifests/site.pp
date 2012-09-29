@@ -6,8 +6,6 @@ import "box"
 
 $source_base="/tmp/puppet"
 
-$box_name="linkbox"
-
 include box
 $amixerconf_mode="duplex"
 include box::audio
