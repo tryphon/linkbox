@@ -3,6 +3,8 @@ class linkcontrol {
   include apache::dnssd
   include apache::passenger
 
+  include ruby::bundler
+
   file { "/etc/linkcontrol/database.yml":
     source => "$source_base/files/linkcontrol/database.yml",
     require => Package[linkcontrol]
@@ -12,7 +14,7 @@ class linkcontrol {
     require => Package[linkcontrol]
   }
   package { linkcontrol: 
-    ensure => "0.5-1lenny1",
+    ensure => "0.6-1",
     require => [Apt::Source[tryphon], Package[libapache2-mod-passenger]]
   }
 
