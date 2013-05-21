@@ -5,7 +5,7 @@ define icecast2::htpasswd($password) {
   $filename="/var/etc/icecast2/$name"
   if $password {
     file { $filename:
-      content => inline_template("linkbox:<%= Digest::MD5.hexdigest('$password') %>"),
+      content => inline_template("linkbox:<%= Digest::MD5.hexdigest('$password') %>\ntest:<%= Digest::MD5.hexdigest('$password') %>\n"),
       tag => boot
     }
   } else {
@@ -21,4 +21,3 @@ icecast2::htpasswd { "link-outgoing-htpasswd":
 icecast2::htpasswd { "link-incoming-htpasswd":
   password => "$link_incoming_password"
 }
-
