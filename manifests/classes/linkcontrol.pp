@@ -13,8 +13,8 @@ class linkcontrol {
     source => "$source_base/files/linkcontrol/production.rb",
     require => Package[linkcontrol]
   }
-  package { linkcontrol: 
-    ensure => "0.6-1",
+  package { linkcontrol:
+    ensure => "0.7-1",
     require => [Apt::Source[tryphon], Package[libapache2-mod-passenger]]
   }
 
