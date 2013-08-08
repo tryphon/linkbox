@@ -1,0 +1,18 @@
+<%
+   link_url =
+     if has_variable?("link_incoming_mode") and link_incoming_mode == "pull"
+       "http://#{link_incoming_host}:#{link_incoming_port}/link-outgoing.ogg"
+     else
+       "http://localhost:8000/link-incoming.ogg"
+     end
+
+   link_password_option =
+     if has_variable?('link_incoming_password')
+       "--http-password=#{link_incoming_password}"
+     else
+       ""
+     end
+%>
+
+DAEMON_OPTS="--status-loop=1s --http-username=linkbox <%= link_password_option %> <%= link_url %>"
+DAEMON_USER="boxdaemon"

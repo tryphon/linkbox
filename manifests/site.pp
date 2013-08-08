@@ -13,4 +13,4 @@ include box::audio
 include linkcontrol
 include darkice::full
 include icecast2::linkbox
-include liquidsoap::linkbox
+include go-broadcast::linkbox
