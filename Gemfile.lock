@@ -1,23 +1,29 @@
 GIT
   remote: git://projects.tryphon.priv/system-builder
-  revision: 8998112436019091a3e74f82ca0b46f508101280
+  revision: 5cccc3a5e1cc9efe6b30e7869c99043e0a1c16b5
   specs:
     system-builder (0.0.26)
       tryphon-vmbox
 
 GIT
   remote: git://projects.tryphon.priv/vmbox
-  revision: c42d8f45ac82eeefd9c13c518478960ff23d16a8
+  revision: 3a5d75072aa7916b9b2262163f0f9a2ea14553f9
   specs:
     tryphon-vmbox (0.0.1)
+      activesupport (~> 3.2.1)
       json
       qemu
 
 GEM
   remote: https://rubygems.org/
   specs:
+    activesupport (3.2.14)
+      i18n (~> 0.6, >= 0.6.4)
+      multi_json (~> 1.0)
     daemons (1.1.9)
+    i18n (0.6.5)
     json (1.8.0)
+    multi_json (1.7.9)
     qemu (0.0.1)
       daemons
     rake (0.9.2)
