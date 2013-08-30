@@ -14,5 +14,5 @@
      end
 %>
 
-DAEMON_OPTS="--status-loop=1s --http-username=linkbox <%= link_password_option %> <%= link_url %>"
+DAEMON_OPTS="httpclient --status-loop=1s --http-username=linkbox <%= link_password_option %> <%= link_url %>"
 DAEMON_USER="boxdaemon"
