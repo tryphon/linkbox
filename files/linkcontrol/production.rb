@@ -24,10 +24,18 @@ config.action_controller.perform_caching             = true
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
 
+config.cache_store = ActiveSupport::Cache::FileStore.new("/tmp")
+
 config.after_initialize do
   PuppetConfiguration.configuration_file = "/var/etc/puppet/manifests/config.pp"
   PuppetConfiguration.system_update_command = "sudo /usr/local/sbin/launch-puppet"
-  
+
   # SavePoint.timestamp_file = "/boot/config.pp"
   SavePoint.save_command = "sudo /usr/local/sbin/save-puppet-config"
+
+  # FIXME see #784
+  require 'box'
+  Box::CLI::Root.new.setup Box::CLI::Root.setup_file
+
+  Box::Release.install_command = "sudo /usr/local/sbin/box-upgrade"
 end
