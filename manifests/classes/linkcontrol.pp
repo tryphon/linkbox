@@ -4,6 +4,7 @@ class linkcontrol {
   include apache::passenger
 
   include ruby::bundler
+  include apt::tryphon::dev
 
   file { "/etc/linkcontrol/database.yml":
     source => "$source_base/files/linkcontrol/database.yml",
@@ -14,11 +15,10 @@ class linkcontrol {
     require => Package[linkcontrol]
   }
   package { linkcontrol:
-    ensure => "0.8-1",
-    require => [Apt::Source[tryphon], Package[libapache2-mod-passenger]]
+    ensure => "0.9-1+build28",
+    require => [Apt::Source['tryphon-dev'], Package['libapache2-mod-passenger']]
   }
 
   # Not used for the moment
   readonly::mount_tmpfs { "/var/lib/linkcontrol": }
-
 }
