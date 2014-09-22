@@ -5,7 +5,8 @@ require 'system_builder/box_tasks'
 
 SystemBuilder::BoxTasks.new(:linkbox) do |box|
   box.boot do |boot|
-    boot.version = :squeeze
+    boot.version = :wheezy
+    boot.architecture = :amd64
   end
 end
 
