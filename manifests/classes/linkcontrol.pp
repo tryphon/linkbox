@@ -15,7 +15,7 @@ class linkcontrol {
     require => Package[linkcontrol]
   }
   package { linkcontrol:
-    ensure => "0.9-1+build28",
+    ensure => "0.9-1+build29",
     require => [Apt::Source['tryphon-dev'], Package['libapache2-mod-passenger']]
   }
 
